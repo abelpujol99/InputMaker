@@ -3,6 +3,7 @@
 
 #include <MyGesture.h>
 #include <raylib.h>
+#include <ResolutionManager.h>
 #include <WindowManager.h>
 
 ApplicationManager* ApplicationManager::_applicationManager = nullptr;

@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(
         lib/include
+        Header
         Header/Interactions
         Header/Managers
         Header/Utils
@@ -16,6 +17,7 @@ set(SOURCES
         InputMaker.cpp
         src/Interactions/MyGesture.cpp
         src/Managers/ApplicationManager.cpp
+        src/Managers/ResolutionManager.cpp
         src/Managers/WindowManager.cpp
         src/Utils/MathUtils.cpp
         src/Utils/MyVector2.cpp
@@ -28,7 +30,7 @@ set(SOURCES
 
 if (MINGW OR WIN32)
     enable_language("RC")
-    set(ICON "res/resources.rc" InputMaker.cpp)
+    set(ICON "res/icon/resources.rc" InputMaker.cpp)
 
     if (CMAKE_BUILD_TYPE STREQUAL "Release")
         set(WINDOWS_LINK_FLAGS "-mwindows")

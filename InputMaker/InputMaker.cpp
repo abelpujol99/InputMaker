@@ -1,17 +1,11 @@
-﻿#include <raylib.h>
+﻿#include <ApplicationManager.h>
+#include <WindowManager.h>
 
 int main()
 {
-    InitWindow(400, 400, "Input Maker");
+    ApplicationManager::GetApplicationManagerInstance()->Update();
 
-    while (!WindowShouldClose())
-    {
-        BeginDrawing();
-
-        EndDrawing();
-    }
-
-    CloseWindow();
+    ApplicationManager::DestroyApplicationManagerInstance();
 
     return 0;
 }

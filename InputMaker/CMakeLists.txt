@@ -6,11 +6,24 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(
         lib/include
-        header
+        Header/Interactions
+        Header/Managers
+        Header/Utils
+        Header/VisualElements
 )
 
 set(SOURCES
         InputMaker.cpp
+        src/Interactions/MyGesture.cpp
+        src/Managers/ApplicationManager.cpp
+        src/Managers/WindowManager.cpp
+        src/Utils/MathUtils.cpp
+        src/Utils/MyVector2.cpp
+        src/Utils/MyRectangle.cpp
+        src/Utils/MyTexture2D.cpp
+        src/Utils/TextureUtils.cpp
+        src/Utils/WindowsUtils.cpp
+        src/VisualElements/UITexture.cpp
 )
 
 if (MINGW OR WIN32)

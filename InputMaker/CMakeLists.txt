@@ -26,6 +26,7 @@ set(SOURCES
         src/Utils/TextureUtils.cpp
         src/Utils/WindowsUtils.cpp
         src/VisualElements/UITexture.cpp
+        src/Managers/RenderManager.cpp
 )
 
 if (MINGW OR WIN32)

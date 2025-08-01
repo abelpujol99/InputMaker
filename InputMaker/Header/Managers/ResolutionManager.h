@@ -14,6 +14,8 @@ private:
 
 public:
 
+    ResolutionManager(const ResolutionManager& other) = delete;
+
     static ResolutionManager* GetResolutionManagerInstance();
 
     static void DestroyResolutionManagerInstance();

@@ -2,6 +2,8 @@
 
 #include <MyVector2.h>
 
+class UITexture;
+
 class WindowManager
 {
 
@@ -12,6 +14,9 @@ private:
     const float DRAG_HEIGHT;
 
     MyVector2<int> offsetVector;
+
+    UITexture* _testUITexture;
+    UITexture* _testUITexture2;
 
     WindowManager();
 
@@ -27,11 +32,9 @@ public:
 
     void StartDragWindow();
 
-    bool DragWindow() const;
+    [[nodiscard]] bool DragWindow() const;
 
     void StopDragWindow();
 
     int GetWindowCurrentMonitor();
-
-    void Draw();
 };

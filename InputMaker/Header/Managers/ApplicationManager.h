@@ -17,6 +17,8 @@ private:
 
 public:
 
+    ApplicationManager(const ApplicationManager& other) = delete;
+
     static ApplicationManager* GetApplicationManagerInstance();
 
     static void DestroyApplicationManagerInstance();

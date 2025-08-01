@@ -7,9 +7,10 @@
 #include <raylib.h>
 #include <ResolutionManager.h>
 #include <GlobalDefines.h>
+#include <UITexture.h>
 
-#define SCREEN_WIDTH 400
-#define SCREEN_HEIGHT 400
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 828
 
 WindowManager* WindowManager::_windowManagerInstance = nullptr;
 
@@ -28,6 +29,9 @@ WindowManager::WindowManager() : DRAG_HEIGHT(0)
     Image icon = LoadImage("res/icon/game_icon.png");
     SetWindowIcon(icon);
     UnloadImage(icon);
+
+    _testUITexture = new UITexture({0, 0}, {0, 0}, "res/test/descarga.jpeg", {1, 1}, 0, 1);
+    _testUITexture2 = new UITexture({0, 0}, {0, 100}, "res/test/descarga.jpeg", {1, 1}, 0, 0);
 }
 
 WindowManager* WindowManager::GetWindowManagerInstance() {
@@ -111,13 +115,5 @@ int WindowManager::GetWindowCurrentMonitor()
     }
 
     return bestMonitor;
-}
-
-void WindowManager::Draw()
-{
-    BeginDrawing();
-    ClearBackground(WHITE);
-
-    EndDrawing();
 }
 

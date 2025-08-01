@@ -6,5 +6,5 @@
 
 Texture2D ReturnTexture(const char* texturePath);
 
-void MyDrawTexturePro(MyVector2<int> position, MyRectangle sourceRectangle, MyVector2<float> scale, Texture2D texture,
+void MyDrawTexturePro(MyVector2<int> position, Rectangle sourceRectangle, MyVector2<float> scale, Texture2D texture,
     float rotation, Color color);

@@ -3,6 +3,7 @@
 
 #include <MyGesture.h>
 #include <raylib.h>
+#include <RenderManager.h>
 #include <ResolutionManager.h>
 #include <WindowManager.h>
 
@@ -37,7 +38,7 @@ void ApplicationManager::Update()
 
         DragAndDrop();
 
-        WindowManager::GetWindowManagerInstance()->Draw();
+        RenderManager::GetRenderManagerInstance()->RenderTextures();
     }
 }
 

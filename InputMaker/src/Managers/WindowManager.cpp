@@ -5,6 +5,8 @@
 #include <WindowsUtils.h>
 #include <MyVector2.h>
 #include <raylib.h>
+#include <ResolutionManager.h>
+#include <GlobalDefines.h>
 
 #define SCREEN_WIDTH 400
 #define SCREEN_HEIGHT 400
@@ -15,11 +17,15 @@ WindowManager::WindowManager() : DRAG_HEIGHT(0)
 {
     SetConfigFlags(FLAG_WINDOW_TRANSPARENT | FLAG_BORDERLESS_WINDOWED_MODE | FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_UNDECORATED);
 
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Input Maker");
+    InitWindow(1, 1, "Input Maker");
 
-    SetTargetFPS(GetMonitorRefreshRate(0));
+    MyVector2<int> windowSize = ResolutionManager::GetResolutionManagerInstance()->RescaleSize(MyVector2<int>{SCREEN_WIDTH, SCREEN_HEIGHT});
 
-    Image icon = LoadImage("res/game_icon.png");
+    SetWindowSize(windowSize.x, windowSize.y);
+
+    SetTargetFPS(GetMonitorRefreshRate(MONITOR_INDEX));
+
+    Image icon = LoadImage("res/icon/game_icon.png");
     SetWindowIcon(icon);
     UnloadImage(icon);
 }

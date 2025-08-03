@@ -25,8 +25,10 @@ set(SOURCES
         src/Utils/MyTexture2D.cpp
         src/Utils/TextureUtils.cpp
         src/Utils/WindowsUtils.cpp
+        src/VisualElements/UIText.cpp
         src/VisualElements/UITexture.cpp
         src/Managers/RenderManager.cpp
+        src/VisualElements/Drawable.cpp
 )
 
 if (MINGW OR WIN32)

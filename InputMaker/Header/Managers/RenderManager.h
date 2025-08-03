@@ -2,7 +2,7 @@
 
 #include <vector>
 
-class UITexture;
+class IDrawable;
 
 class RenderManager
 {
@@ -11,7 +11,7 @@ private:
 
     static RenderManager* _renderManagerInstance;
 
-    std::vector<std::vector<UITexture*>> _layers;
+    std::vector<std::vector<IDrawable*>> _layers;
 
     RenderManager();
 
@@ -23,9 +23,9 @@ public:
 
     static void DestroyRenderManagerInstance();
 
-    void InsertUITextureInLayer(UITexture* uiTexture, int layerNumber, int zOrder);
+    void InsertIDrawableInLayer(IDrawable* drawable, int layerNumber, int zOrder);
 
-    void RemoveUITextureFromLayers(UITexture* uiTextureToRemove);
+    void RemoveIDrawableFromLayers(IDrawable* drawableToRemove);
 
     void RenderTextures();
 };

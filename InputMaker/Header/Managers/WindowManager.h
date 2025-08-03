@@ -2,6 +2,7 @@
 
 #include <MyVector2.h>
 
+class UIText;
 class UITexture;
 
 class WindowManager
@@ -11,12 +12,11 @@ private:
 
     static WindowManager* _windowManagerInstance;
 
-    const float DRAG_HEIGHT;
-
     MyVector2<int> offsetVector;
 
     UITexture* _testUITexture;
     UITexture* _testUITexture2;
+    UIText* _testText;
 
     WindowManager();
 

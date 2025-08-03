@@ -26,32 +26,32 @@ void RenderManager::DestroyRenderManagerInstance()
     _renderManagerInstance = nullptr;
 }
 
-void RenderManager::InsertUITextureInLayer(UITexture *uiTexture, int layerNumber, int zOrder)
+void RenderManager::InsertIDrawableInLayer(IDrawable *drawable, int layerNumber, int zOrder)
 {
     while (_layers.size() <= layerNumber)
     {
         _layers.emplace_back();
     }
 
-    std::vector<UITexture*>& layer {_layers[layerNumber]};
+    std::vector<IDrawable*>& layer {_layers[layerNumber]};
 
-    auto index {std::lower_bound(layer.begin(), layer.end(), zOrder, [](UITexture* uiTexture, int value) {
-        return uiTexture->_zOrder <= value;
+    auto index {std::lower_bound(layer.begin(), layer.end(), zOrder, [](IDrawable* drawable, int value) {
+        return drawable->GetZOrder() <= value;
     })};
 
-    _layers[layerNumber].insert(index, uiTexture);
+    _layers[layerNumber].insert(index, drawable);
 }
 
-void RenderManager::RemoveUITextureFromLayers(UITexture *uiTextureToRemove)
+void RenderManager::RemoveIDrawableFromLayers(IDrawable *drawableToRemove)
 {
     for (size_t i {0}; i < _layers.size(); ++i)
     {
-        std::vector<UITexture*>& layer = _layers[i];
+        std::vector<IDrawable*>& layer = _layers[i];
 
         for (size_t j {0}; j < layer.size(); ++j)
         {
-            UITexture* uiTexture = layer[j];
-            if (uiTexture != uiTextureToRemove)
+            IDrawable* drawable = layer[j];
+            if (drawable != drawableToRemove)
             {
                 continue;
             }
@@ -69,12 +69,11 @@ void RenderManager::RenderTextures()
 
     for (size_t i {0}; i < _layers.size(); ++i)
     {
-        std::vector<UITexture*>& layer = _layers[i];
+        std::vector<IDrawable*>& layer = _layers[i];
 
         for (size_t j {0}; j < layer.size(); ++j)
         {
-            UITexture* uiTexture = layer[j];
-            MyDrawTexturePro(uiTexture->_uiPosition, uiTexture->_uiRectangle, uiTexture->_scale, uiTexture->_uiTexture, 0, WHITE);
+            layer[j]->Draw();
         }
     }
 

@@ -7,31 +7,39 @@
 #include <raylib.h>
 #include <ResolutionManager.h>
 #include <GlobalDefines.h>
+#include <UIText.h>
 #include <UITexture.h>
 
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 828
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 800
 
 WindowManager* WindowManager::_windowManagerInstance = nullptr;
 
-WindowManager::WindowManager() : DRAG_HEIGHT(0)
+WindowManager::WindowManager()
 {
-    SetConfigFlags(FLAG_WINDOW_TRANSPARENT | FLAG_BORDERLESS_WINDOWED_MODE | FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_UNDECORATED);
-
     InitWindow(1, 1, "Input Maker");
 
-    MyVector2<int> windowSize = ResolutionManager::GetResolutionManagerInstance()->RescaleSize(MyVector2<int>{SCREEN_WIDTH, SCREEN_HEIGHT});
+    MyVector2<int> windowSize {ResolutionManager::GetResolutionManagerInstance()->RescaleSize(MyVector2<int>{SCREEN_WIDTH, SCREEN_HEIGHT})};
 
     SetWindowSize(windowSize.x, windowSize.y);
 
+    Vector2 monitorPosition {GetMonitorPosition(MONITOR_INDEX)};
+
+    SetWindowPosition(monitorPosition.x + GetMonitorWidth(MONITOR_INDEX) / 2 - windowSize.x / 2,
+        monitorPosition.y + GetMonitorHeight(MONITOR_INDEX) / 2 - windowSize.y / 2);
+
     SetTargetFPS(GetMonitorRefreshRate(MONITOR_INDEX));
 
-    Image icon = LoadImage("res/icon/game_icon.png");
+    Image icon {LoadImage("res/icon/game_icon.png")};
     SetWindowIcon(icon);
     UnloadImage(icon);
 
-    _testUITexture = new UITexture({0, 0}, {0, 0}, "res/test/descarga.jpeg", {1, 1}, 0, 1);
+    _testUITexture = new UITexture({0, 0}, {0, 0}, "res/test/descarga.jpeg", {1, 1}, 1, 1);
     _testUITexture2 = new UITexture({0, 0}, {0, 100}, "res/test/descarga.jpeg", {1, 1}, 0, 0);
+    _testText = new UIText({0, 0}, {0, 0}, "res/fonts/notomono_regular.ttf", 64, 2, WHITE, HORIZONTAL_LEFT_TEXT_ALIGNMENT,
+        VERTICAL_TOP_TEXT_ALIGNMENT, 2, 0);
+
+    _testText->InsertString("Holi");
 }
 
 WindowManager* WindowManager::GetWindowManagerInstance() {
